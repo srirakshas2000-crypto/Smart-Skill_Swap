@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Skill Swap | Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2563eb, #1e40af);
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 45px;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 13px 15px;
+            margin: 7px 0;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateX(4px);
+        }
+
+        .logout {
+            margin-top: 35px !important;
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 240px;
+            padding: 40px;
+        }
+
+        .welcome {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        /* QUICK ACTIONS */
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .section h2 {
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                margin-left: 190px;
+                padding: 25px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            🔄 Smart Skill<br>
+            Swap
+            <br>
+            <span>Learn • Teach • Connect</span>
+        </div>
+
+        <div class="nav">
+
+            <a href="/dashboard/{{ username }}">
+                🏠 Dashboard
+            </a>
+
+            <a href="/profile/{{ username }}">
+                👤 Profile
+            </a>
+
+            <a href="/matching/{{ username }}">
+                🤝 Skill Matching
+            </a>
+
+            <a href="/requests/{{ username }}">
+                📩 Requests
+            </a>
+
+            <a href="/feedback/{{ username }}">
+                ⭐ Feedback
+            </a>
+
+            <a href="/logout" class="logout">
+                🚪 Logout
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- WELCOME -->
+        <div class="welcome">
+
+            <h1>
+                Welcome, {{ username }} 👋
+            </h1>
+
+            <p>
+                Ready to exchange your skills today?
+                Continue your learning journey and connect with other learners.
+            </p>
+
+        </div>
+
+
+        <!-- DASHBOARD CARDS -->
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">💡</div>
+
+                <h3>My Skills</h3>
+
+                <p>
+                    Python, HTML, CSS
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">📚</div>
+
+                <h3>Skills I Want to Learn</h3>
+
+                <p>
+                    Java, Power BI
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">📩</div>
+
+                <h3>Pending Requests</h3>
+
+                <div class="number">3</div>
+
+                <p>
+                    Skill exchange requests
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="section">
+
+            <h2>Quick Actions ⚡</h2>
+
+            <div class="actions">
+
+                <a class="action-btn"
+                   href="/profile/{{ username }}">
+                    👤 View Profile
+                </a>
+
+                <a class="action-btn"
+                   href="/matching/{{ username }}">
+                    🤝 Find Skill Matches
+                </a>
+
+                <a class="action-btn"
+                   href="/requests/{{ username }}">
+                    📩 View Requests
+                </a>
+
+                <a class="action-btn"
+                   href="/feedback/{{ username }}">
+                    ⭐ Give Feedback
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
