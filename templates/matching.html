@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Matching | Smart Skill Swap</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+
+            background: linear-gradient(
+                180deg,
+                #2563eb,
+                #1e40af
+            );
+
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+
+            padding: 13px;
+            margin: 6px 0;
+
+            border-radius: 10px;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+
+        /* MAIN */
+
+        .main {
+            margin-left: 240px;
+            padding: 40px;
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6b7280;
+        }
+
+
+        /* MATCHING CARD */
+
+        .matching-card {
+            background: white;
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        .matching-card h2 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+
+        /* MATCH USER */
+
+        .match-item {
+            display: flex;
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 20px;
+
+            margin-top: 18px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+        }
+
+        .match-avatar {
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .match-info {
+            flex: 1;
+        }
+
+        .match-info h3 {
+            margin: 0 0 8px;
+
+            color: #2563eb;
+
+            font-size: 19px;
+        }
+
+        .match-info p {
+            margin: 5px 0;
+
+            color: #6b7280;
+        }
+
+
+        /* BUTTON */
+
+        .request-btn {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        .request-btn:hover {
+            background: #1e40af;
+        }
+
+
+        /* NO MATCH */
+
+        .no-match {
+            padding: 30px;
+
+            text-align: center;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            color: #6b7280;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                margin-left: 190px;
+                padding: 25px;
+            }
+
+            .match-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        🔄 Smart Skill<br>
+        Swap
+
+        <br>
+
+        <span>
+            Learn • Teach • Connect
+        </span>
+
+    </div>
+
+
+    <div class="nav">
+
+        <a href="/dashboard/{{ username }}">
+            🏠 Dashboard
+        </a>
+
+        <a href="/profile/{{ username }}">
+            👤 Profile
+        </a>
+
+        <a href="/matching/{{ username }}">
+            🤝 Skill Matching
+        </a>
+
+        <a href="/requests/{{ username }}">
+            📩 Requests
+        </a>
+
+        <a href="/feedback/{{ username }}">
+            ⭐ Feedback
+        </a>
+
+        <a href="/logout">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+
+    <div class="header">
+
+        <h1>
+            Skill Matching 🤝
+        </h1>
+
+        <p>
+            Find people who can teach you the skills
+            you want to learn.
+        </p>
+
+    </div>
+
+
+{% for user in matches %}
+
+<div class="match-item">
+
+    <div class="match-avatar">
+        {{ user["name"][0].upper() }}
+    </div>
+
+    <div class="match-info">
+
+        <h3>{{ user["name"] }}</h3>
+
+        <p>📚 Can teach: {{ user["teach"] }}</p>
+
+        <p>🎯 Wants to learn: {{ user["learn"] }}</p>
+
+    </div>
+
+    <form action="/send_request" method="POST">
+
+        <input
+            type="hidden"
+            name="person"
+            value="{{ user['name'] }}"
+        >
+
+        <button type="submit">
+            🤝 Send Request
+        </button>
+
+    </form>
+
+</div>
+
+{% else %}
+
+<p>No matching users found.</p>
+
+{% endfor %}
+
+
+
+        <!-- ================= MATCH RESULTS ================= -->
+
+        {% if matches %}
+
+
+            {% for user in matches %}
+
+
+            <div class="match-item">
+
+
+                <!-- USER ICON -->
+
+                <div class="match-avatar">
+                    👤
+                </div>
+
+
+                <!-- USER DETAILS -->
+
+                <div class="match-info">
+
+                    <h3>
+                        {{ user["name"] }}
+                    </h3>
+
+
+                    <p>
+                        📚 <strong>Can Teach:</strong>
+                        {{ user["teach"] }}
+                    </p>
+
+
+                    <p>
+                        🎯 <strong>Wants to Learn:</strong>
+                        {{ user["learn"] }}
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- SEND REQUEST -->
+
+                <form
+                    action="/send_request"
+                    method="POST"
+                >
+
+                    <input
+                        type="hidden"
+                        name="person"
+                        value="{{ user['name'] }}"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="request-btn"
+                    >
+                        🤝 Send Request
+                    </button>
+
+                </form>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+        {% else %}
+
+
+            <!-- NO MATCH FOUND -->
+
+            <div class="no-match">
+
+                🔍
+
+                <h3>
+                    No Matches Found
+                </h3>
+
+                <p>
+                    Don't worry! New learners
+                    will appear here when they join.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
