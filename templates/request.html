@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Requests - Smart Skill Swap</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/requests.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📩 Skill Requests</h1>
+
+    <p class="subtitle">
+        Manage your skill exchange requests
+    </p>
+
+    <div class="request-card">
+
+        <div class="person">
+            👤 <strong>Arun</strong>
+        </div>
+
+        <p>
+            Arun wants to connect with you for a skill exchange.
+        </p>
+
+        <div class="buttons">
+
+            <form action="/accept_request" method="POST">
+                <input type="hidden" name="person" value="Arun">
+                <button class="accept-btn" type="submit">
+                    ✅ Accept
+                </button>
+            </form>
+
+            <form action="/reject_request" method="POST">
+                <input type="hidden" name="person" value="Arun">
+                <button class="reject-btn" type="submit">
+                    ❌ Reject
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div class="request-card">
+
+        <div class="person">
+            👤 <strong>Priya</strong>
+        </div>
+
+        <p>
+            Priya wants to connect with you for a skill exchange.
+        </p>
+
+        <div class="buttons">
+
+            <form action="/accept_request" method="POST">
+                <input type="hidden" name="person" value="Priya">
+                <button class="accept-btn" type="submit">
+                    ✅ Accept
+                </button>
+            </form>
+
+            <form action="/reject_request" method="POST">
+                <input type="hidden" name="person" value="Priya">
+                <button class="reject-btn" type="submit">
+                    ❌ Reject
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <a href="/dashboard/sriraksha" class="back-btn">
+        ⬅ Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
