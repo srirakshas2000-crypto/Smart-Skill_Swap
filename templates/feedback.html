@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Smart Skill Swap</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Smart Skill Swap</h1>
+
+    <nav>
+        <a href="/dashboard/sriraksha">🏠 Dashboard</a>
+        <a href="/profile/sriraksha">👤 Profile</a>
+        <a href="/matching/sriraksha">🤝 Skill Matching</a>
+        <a href="/requests">📩 Requests</a>
+        <a href="/feedback">⭐ Feedback</a>
+        <a href="/login">🚪 Logout</a>
+    </nav>
+
+    <main class="main-content">
+
+        <div class="feedback-card">
+
+            <h2>Give Your Feedback ⭐</h2>
+
+            <form method="POST" action="/feedback">
+
+                <label>Your Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label>Rating</label>
+                <select name="rating" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ Good</option>
+                    <option value="3">⭐⭐⭐ Average</option>
+                    <option value="2">⭐⭐ Poor</option>
+                    <option value="1">⭐ Very Poor</option>
+                </select>
+
+                <label>Your Feedback</label>
+                <textarea
+                    name="feedback"
+                    placeholder="Write your feedback here..."
+                    rows="5"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Submit Feedback
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
