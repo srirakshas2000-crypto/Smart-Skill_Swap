@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #f8f9ff);
+    color: #222;
+}
+
+.container {
+    width: 85%;
+    max-width: 900px;
+    margin: 50px auto;
+}
+
+h1 {
+    color: #1976d2;
+    text-align: center;
+    font-size: 36px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+.request-card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+}
+
+.person {
+    font-size: 22px;
+    color: #1976d2;
+    margin-bottom: 12px;
+}
+
+.request-card p {
+    color: #555;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.buttons form {
+    margin: 0;
+}
+
+.accept-btn,
+.reject-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.accept-btn {
+    background: #28a745;
+}
+
+.reject-btn {
+    background: #dc3545;
+}
+
+.accept-btn:hover,
+.reject-btn:hover {
+    opacity: 0.85;
+}
+
+.back-btn {
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 12px 22px;
+    background: #1976d2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
