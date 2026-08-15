@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf3ff;
+}
+
+.profile-page {
+    text-align: center;
+    padding: 40px;
+}
+
+.profile-page h1 {
+    color: #1976d2;
+}
+
+.profile-card {
+    background: white;
+    width: 400px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.profile-icon {
+    font-size: 60px;
+}
+
+.profile-card h2 {
+    color: #1976d2;
+}
+
+.profile-card h3 {
+    margin-top: 25px;
+    color: #333;
+}
+
+.profile-card p {
+    color: #555;
+}
